@@ -1,0 +1,57 @@
+
+.navbar{
+    background-color: teal;
+    padding: none;
+    margin:0;
+}
+
+.navbar-brand {
+    margin:0;
+    padding:20px;
+    height:100%;
+    font-weight: bold;
+    background-image: none;
+    background-repeat: no-repeat;
+   }
+
+.container2{
+    width: 560px;
+    margin:20px auto;
+    background-color:white;
+    
+}
+.container{
+    background-color:white;
+    width:640px;
+    float:left;
+    margin:30px;
+}
+
+
+img{
+    margin:20px;
+    margin-left:0px;
+    float:left;
+}
+body{
+    background-color: lightgray;
+    
+}
+footer{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    clear:both;
+    height:60px;
+    background-color: gray;
+    display:flex;
+}
+.copy{ 
+    margin:auto; 
+}
+.projects{
+    display: flex;
+    
+    justify-content: space-between;
+    
+}
