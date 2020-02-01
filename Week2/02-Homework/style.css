@@ -18,6 +18,9 @@
     justify-content: space-between;
 }
 
+section, h1, img{
+    padding: 20px;
+}
 
 .customcss{
     background-color: white;
