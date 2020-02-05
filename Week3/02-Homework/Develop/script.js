@@ -1,19 +1,3 @@
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-
 //Create an array of numbers
 var num =['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
@@ -131,19 +115,26 @@ if(lowercase){
   counter++;
 }
 
-
+var passwordlength = prompt("Please enter the desire length of the password.");
+if(passwordlength < 8){
+  confirm("Please choose a password length 8 or greater.")
+  
+}
 
 
 // create an temp array to hold randomly generated values
 var temp=[];
-
-
-
 // Determine position of temp array 
 var position =0;
 
 // Create function to randomly generate a number, special character, uppercase and lowercase base on user's choices
 function generateNextValue(){
+
+  // Clear temp array
+  temp=[];
+  // Set array position back to 0
+  position =0;
+
   // generate number between 0-9
   if(numbers){
     var value = Math.floor(Math.random()*num.length);
@@ -170,28 +161,37 @@ function generateNextValue(){
   }
   return temp;
 }
-// Randomly select a value inside the temp array
-//var selector= Math.floor(Math.random())*counter;
-//var password= password.concat(temp[selector]);
-//console.log(password);
-
-temp=generateNextValue();
-console.log(temp);
-var hege = ["Cecilie", "Lone"];
-var stale = ["Emil", "Tobias", "Linus"];
-var children = hege.concat(stale);
-console.log(children)
 
 //Test codes
-console.log(counter);
-var password =[];
-for(var i = 0; i<10; i++){
-  
-  var selector= Math.floor(Math.random()*counter);
-  var next= temp[selector];
-  console.log("selector is" +selector)
-  console.log("next is " +next)
-  
-  password= password+next;
-  console.log(password);
+//console.log(counter);
+function generatePassword(){
+  var password =[];
+  for(var i = 0; i<passwordlength; i++){
+    var temp=generateNextValue();
+    //console.log(temp);
+    var selector= Math.floor(Math.random()*counter);
+    var next= temp[selector];
+    //console.log("selector is " + selector)
+    //console.log("next is " +next)
+    password= password+next;
+    //console.log("Password is "+password);
+  }
+  return password;
 }
+
+// Assignment Code
+var generateBtn = document.querySelector("#generate");
+
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  //console.log(password)
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+
+}
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
