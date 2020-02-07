@@ -179,6 +179,11 @@ function getOptions(){
   // check for lower case
   var lowercase = confirm("Click ok to include lowercase letters in your password.");
 
+  // Check if user choose at least one options
+  if(numbers === false && specialchar === false && uppercase === false && lowercase ===false){
+    confirm("Please choose at least one option.")
+    return;
+  }
   // return option parameter
   var option = {
     passwordlength:passwordlength,
