@@ -88,51 +88,18 @@ var lower =[
   'z'
 ];
 
-// create counter 
-var counter = 0;
-
-// check for numbers
-var numbers = confirm("Click ok to include numbers in your password.");
-if(numbers){
-  counter++;
-}
-
-// check for special character
-var specialchar = confirm("Click ok to include special characters in your password.");
-if(specialchar){
-  counter++;
-}
-
-// check for upper case
-var uppercase = confirm("Click ok to include uppercase letters in your password.");
-if(uppercase){
-  counter++;
-}
-
-// check for lower case
-var lowercase = confirm("Click ok to include lowercase letters in your password.");
-if(lowercase){
-  counter++;
-}
-
-var passwordlength = prompt("Please enter the desire length of the password.");
-if(passwordlength < 8){
-  confirm("Please choose a password length 8 or greater.")
-  
-}
-
 
 // create an temp array to hold randomly generated values
 var temp=[];
 // Determine position of temp array 
 var position =0;
 
-// Create function to randomly generate a number, special character, uppercase and lowercase base on user's choices
-function generateNextValue(){
+// Create function to randomly generate a number, special character, uppercase and lowercase base on user's options
+function generateNextValue(numbers, specialchar, uppercase, lowercase){
 
   // Clear temp array
   temp=[];
-  // Set array position back to 0
+  // Set array position back to 0, position determine where the random value is being place in the array.
   position =0;
 
   // generate number between 0-9
@@ -159,37 +126,83 @@ function generateNextValue(){
     temp[position] = lower[value];
     position++;
   }
+  // return the randomly generated values inside the temp array
   return temp;
 }
 
-//Test codes
-//console.log(counter);
-function generatePassword(){
+
+//generate password by passing the boolean parameters of user option to it
+function generatePassword(numbers, specialchar, uppercase, lowercase, passwordlength){
   var password =[];
+  // runs until the password is user select length
   for(var i = 0; i<passwordlength; i++){
-    var temp=generateNextValue();
-    //console.log(temp);
-    var selector= Math.floor(Math.random()*counter);
+    /* generate a random number speicalchar upper and lower case and put it in an array called temp by passing the boolean value from 
+        user query 
+    */
+    var temp=generateNextValue(numbers, specialchar, uppercase, lowercase);
+    // randomly select a value from the temp array
+    var selector= Math.floor(Math.random()*temp.length);
     var next= temp[selector];
-    //console.log("selector is " + selector)
-    //console.log("next is " +next)
+    // concat the password with next value
     password= password+next;
-    //console.log("Password is "+password);
   }
   return password;
 }
 
-// Assignment Code
+// created a function get get user options
+function getOptions(){
+  var passwordlength = prompt("Please enter the desire length of the password between 8 and 128.");
+  // check if password is not a number
+  if(isNaN(passwordlength)){
+    confirm("Please enter a number.")
+    return;
+  }
+  //if password length is less than 8 it will stop
+  if(passwordlength < 8){
+    confirm("Please choose a password length 8 or greater.") 
+    return;
+  }
+  //if passwordlength is more than 128 it will stop
+  if(passwordlength >128){
+    confirm("Please choose a password length 128 or less.")
+    return;
+  }
+    // check for numbers
+  var numbers = confirm("Click ok to include numbers in your password.");
+
+  // check for special character
+  var specialchar = confirm("Click ok to include special characters in your password.");
+
+  // check for upper case
+  var uppercase = confirm("Click ok to include uppercase letters in your password.");
+
+  // check for lower case
+  var lowercase = confirm("Click ok to include lowercase letters in your password.");
+
+  // return option parameter
+  var option = {
+    passwordlength:passwordlength,
+    numbers:numbers,
+    specialchar:specialchar,
+    uppercase:uppercase,
+    lowercase:lowercase
+  }
+  return option;
+}
+
+
+// Assignment Code and Main Code
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  //console.log(password)
+  // get user options
+  var option = getOptions();
+  //pass option to generate password
+  var password = generatePassword(option.numbers, option.specialchar, option.uppercase, option.lowercase, option.passwordlength);
+  // generate password to replace text value on screen
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
