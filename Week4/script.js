@@ -9,7 +9,7 @@ var scoreTracker = "View High Scores";
 var leftDiv = document.createElement("div")
 leftDiv.setAttribute("id", "leftDiv");
 leftDiv.setAttribute("style", "width:50%; display:inline-block");
-leftDiv.innerHTML = scoreTracker.link("#"); 
+leftDiv.innerHTML = scoreTracker.link("highScore.html"); 
 newDiv.appendChild(leftDiv);
 
 //create div for timer
@@ -36,6 +36,16 @@ function counter(seconds) {
    },1000)
 }
 counter(60);
+
+
+var initalInput = "AC";
+var scoreInput = 60;
+
+var score = {inital : initalInput, score : scoreInput}
+
+localStorage.setItem("score", JSON.stringify(score));
+
+
 
 
 // create highscore page that let user enter their initals and score from quiz
