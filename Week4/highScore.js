@@ -14,3 +14,5 @@ var scoreDiv = document.createElement("div");
 scoreDiv.setAttribute("id", "scoreBoard");
 scoreDiv.innerHTML = "Inital " +score.inital +" Score of " +score.score;
 newDiv.appendChild(scoreDiv)
+
+
