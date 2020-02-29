@@ -1,0 +1,28 @@
+body{
+    display:flex;
+}
+
+.row{
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+}
+.card{
+    display: flex;
+    flex-wrap: wrap;
+}
+.display-4{
+    color:white;
+}
+.jumbotron{
+    background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(weather-forecast-background-climate-change-260nw-1124541077.webp);
+}
+.col-md-2{
+    background-color:rgb(13, 177, 218);
+}
+.search{
+    background-color: rgb(226, 226, 226);
+}
+.form{
+    margin-bottom: 10px;
+}
